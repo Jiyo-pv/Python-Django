@@ -1,0 +1,14 @@
+<h2>Blog Posts</h2>
+
+<a href="/add/">Add New Post</a>
+<br><br>
+
+{% for post in posts %}
+    <h3>
+        <a href="/post/{{ post.id }}/">{{ post.title }}</a>
+    </h3>
+    <small>{{ post.created_at }}</small>
+    <hr>
+{% empty %}
+    No posts yet.
+{% endfor %}

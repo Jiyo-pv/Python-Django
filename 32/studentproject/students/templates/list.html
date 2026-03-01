@@ -1,0 +1,13 @@
+<h2>Student List</h2>
+
+<a href="/add/">Add Student</a>
+<br><br>
+
+{% for student in students %}
+    {{ student.name }} - {{ student.age }} - {{ student.course }}
+    <a href="/edit/{{ student.id }}/">Edit</a>
+    <a href="/delete/{{ student.id }}/">Delete</a>
+    <br>
+{% empty %}
+    No students found.
+{% endfor %}

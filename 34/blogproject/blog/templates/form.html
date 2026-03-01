@@ -1,0 +1,9 @@
+<h2>Add Blog Post</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Publish</button>
+</form>
+
+<a href="/">Back</a>

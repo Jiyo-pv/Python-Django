@@ -1,0 +1,13 @@
+<h2>All Feedback</h2>
+
+<a href="/">Submit New Feedback</a>
+<br><br>
+
+{% for f in feedbacks %}
+    <strong>{{ f.name }}</strong> ({{ f.email }})<br>
+    {{ f.message }}<br>
+    <small>{{ f.created_at }}</small>
+    <hr>
+{% empty %}
+    No feedback available.
+{% endfor %}
