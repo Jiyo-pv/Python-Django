@@ -1,0 +1,68 @@
+    <!-- Program 9: Digital Clock -->
+    <!-- @JIYO P V ROLL NO:33 Date: 14-02-2026 -->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Digital Clock</title>
+        <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body { font-family: 'Courier New', monospace; background: linear-gradient(135deg, #667eea, #764ba2); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 2rem; }
+            .container { text-align: center; }
+            h1 { color: white; margin-bottom: 3rem; font-size: 2rem; }
+            .clock { background: rgba(0, 0, 0, 0.8); padding: 3rem; border-radius: 15px; box-shadow: 0 8px 32px rgba(0,0,0,0.3); border: 2px solid #667eea; }
+            .time { font-size: 4rem; color: #00ff00; font-weight: bold; letter-spacing: 2px; }
+            .date { font-size: 1.5rem; color: #64be6a; margin-top: 1rem; }
+            .period { font-size: 1.2rem; color: #64be6a; margin-top: 0.5rem; }
+            button { margin-top: 2rem; padding: 0.75rem 1.5rem; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1rem; }
+            button:hover { background: #764ba2; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Digital Clock</h1>
+            
+            <div class="clock">
+                <div class="time" id="time">00:00:00</div>
+                <div class="date" id="date"></div>
+                <div class="period" id="period">AM</div>
+            </div>
+            
+            <button onclick="toggleFormat()">Toggle 24hr</button>
+        </div>
+
+        <script>
+            let is24Hour = false;
+
+            function updateClock() {
+                const now = new Date();
+                let hours = now.getHours();
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                
+                let period = 'AM';
+                if (!is24Hour) {
+                    period = hours >= 12 ? 'PM' : 'AM';
+                    hours = hours % 12 || 12;
+                }
+                
+                hours = String(hours).padStart(2, '0');
+                
+                document.getElementById('time').textContent = `${hours}:${minutes}:${seconds}`;
+                document.getElementById('period').textContent = period;
+                
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                document.getElementById('date').textContent = now.toLocaleDateString('en-US', options);
+            }
+
+            function toggleFormat() {
+                is24Hour = !is24Hour;
+                updateClock();
+            }
+
+            updateClock();
+            setInterval(updateClock, 1000);
+        </script>
+    </body>
+    </html>

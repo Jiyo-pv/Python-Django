@@ -1,0 +1,71 @@
+<!-- Program 11: Display JSON Students -->
+<!-- @JIYO P V ROLL NO:33 Date: 14-02-2026 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #667eea, #764ba2); min-height: 100vh; padding: 2rem; }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 { color: white; text-align: center; margin-bottom: 2rem; }
+        .students-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+        .student-card { background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .student-card h2 { color: #667eea; margin-bottom: 1rem; }
+        .student-card p { margin-bottom: 0.5rem; color: #666; }
+        .label { font-weight: bold; color: #333; }
+        .badge { display: inline-block; background: #667eea; color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student List</h1>
+        <div class="students-grid" id="studentsContainer"></div>
+    </div>
+
+    <script>
+        const students = [
+            { id: 2, name: 'Alice Johnson', email: 'alice@example.com', rollNo: '12', grade: 'B+', course: 'Web Design' },
+            { id: 3, name: 'Bob Smith', email: 'bob@example.com', rollNo: '15', grade: 'A-', course: 'Backend Development' },
+            { id: 4, name: 'Carol White', email: 'carol@example.com', rollNo: '20', grade: 'B', course: 'Frontend Development' },
+            { id: 5, name: 'David Brown', email: 'david@example.com', rollNo: '25', grade: 'A', course: 'Full Stack Development' },
+            { id: 6, name: 'Emma Davis', email: 'emma@example.com', rollNo: '30', grade: 'A+', course: 'Database Design' }
+        ];
+
+        const container = document.getElementById('studentsContainer');
+
+        function displayStudents(data) {
+            container.innerHTML = '';
+            data.forEach(student => {
+                const card = document.createElement('div');
+                card.className = 'student-card';
+                card.innerHTML = `
+                    <h2>${student.name}</h2>
+                    <p><span class="label">Roll No:</span> ${student.rollNo}</p>
+                    <p><span class="label">Email:</span> ${student.email}</p>
+                    <p><span class="label">Course:</span> ${student.course}</p>
+                    <p><span class="label">Grade:</span> <span class="badge">${student.grade}</span></p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Display students
+        displayStudents(students);
+
+        // Optional: Filter by grade
+        function filterByGrade(grade) {
+            const filtered = students.filter(s => s.grade === grade);
+            displayStudents(filtered);
+        }
+
+        // Optional: Sort by name
+        function sortByName() {
+            const sorted = [...students].sort((a, b) => a.name.localeCompare(b.name));
+            displayStudents(sorted);
+        }
+    </script>
+</body>
+</html>

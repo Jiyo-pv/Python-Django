@@ -1,0 +1,138 @@
+<!-- Program 1: Responsive Semantic HTML -->
+<!-- @JIYO P V ROLL NO:33 Date: 14-02-2026 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semantic Responsive Page</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #0f172a;
+            color: #e5e7eb;
+        }
+
+        header {
+            background: #1e293b;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background: #334155;
+            padding: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #e5e7eb;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        section {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        article {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #0f172a;
+            border-radius: 8px;
+        }
+
+        aside {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        footer {
+            background: #1e293b;
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        /* ✅ Responsive Design */
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>My Responsive Website</h1>
+    <p>Built with Semantic HTML5</p>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section>
+        <h2>Main Content</h2>
+
+        <article>
+            <h3>Article 1</h3>
+            <p>This is a sample article using semantic HTML elements.</p>
+        </article>
+
+        <article>
+            <h3>Article 2</h3>
+            <p>Semantic tags improve structure, accessibility, and SEO.</p>
+        </article>
+    </section>
+
+    <aside>
+        <h2>Sidebar</h2>
+        <p>Additional information or links can go here.</p>
+    </aside>
+</main>
+
+
+</body>
+</html>

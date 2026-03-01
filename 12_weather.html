@@ -1,0 +1,111 @@
+<!-- Program 12: Weather App -->
+<!-- @JIYO P V ROLL NO:33 Date: 14-02-2026 -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Weather Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        .container {
+            background: white;
+            width: 350px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input,
+        button {
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Weather Checker</h2>
+        <p>Enter a city name to get current weather details.</p>
+
+        <input type="text" id="city" placeholder="Enter City Name">
+        <button onclick="getWeather()">Get Weather</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function getWeather() {
+            const city = document.getElementById("city").value;
+
+            if (!city) {
+                alert("Please enter a city name");
+                return;
+            }
+
+            // Step 1: Convert city → latitude & longitude
+            fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}`)
+                .then(res => res.json())
+                .then(locationData => {
+
+                    if (!locationData.results) {
+                        document.getElementById("result").innerHTML =
+                            "<p>City not found</p>";
+                        return;
+                    }
+
+                    const lat = locationData.results[0].latitude;
+                    const lon = locationData.results[0].longitude;
+
+                    // Step 2: Fetch weather using coordinates
+                    return fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+                })
+                .then(res => res.json())
+                .then(weatherData => {
+
+                    if (!weatherData) return;
+
+                    const temp = weatherData.current_weather.temperature;
+                    const wind = weatherData.current_weather.windspeed;
+
+                    document.getElementById("result").innerHTML =
+                        `<h3>Weather Details</h3>
+                 <p><b>Temperature:</b> ${temp} °C</p>
+                 <p><b>Wind Speed:</b> ${wind} km/h</p>
+                 <p><b>Condition Code:</b> ${weatherData.current_weather.weathercode}</p>`;
+                })
+                .catch(error => {
+                    document.getElementById("result").innerHTML =
+                        "<p>Error fetching weather data</p>";
+                });
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!-- Program 2: CSS Animations -->
+<!-- @JIYO P V ROLL NO:33 Date: 14-02-2026 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Animations</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #667eea, #764ba2); min-height: 100vh; padding: 2rem; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        h1 { color: white; text-align: center; margin-bottom: 3rem; }
+        .demo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+        .demo-box { background: white; padding: 2rem; border-radius: 8px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        .demo-box h3 { color: #667eea; margin-bottom: 1rem; }
+        
+        .fade { width: 80px; height: 80px; background: #667eea; margin: 0 auto 1rem; animation: fade 2s infinite; }
+        @keyframes fade { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+        
+        .slide { width: 80px; height: 80px; background: #f093fb; margin: 0 auto 1rem; animation: slide 2s infinite; }
+        @keyframes slide { 0%, 100% { transform: translateX(-30px); } 50% { transform: translateX(30px); } }
+        
+        .rotate { width: 80px; height: 80px; background: #4facfe; margin: 0 auto 1rem; animation: spin 2s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .scale { width: 80px; height: 80px; background: #fa709a; margin: 0 auto 1rem; animation: grow 2s infinite; }
+        @keyframes grow { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+        
+        .bounce { width: 80px; height: 80px; background: #fed6e3; margin: 0 auto 1rem; animation: jump 1s infinite; }
+        @keyframes jump { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-40px); } }
+        
+        .hover-box { width: 80px; height: 80px; background: #ff9a56; margin: 0 auto 1rem; cursor: pointer; transition: all 0.3s; }
+        .hover-box:hover { transform: scale(1.2) rotate(10deg); box-shadow: 0 8px 16px rgba(0,0,0,0.3); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CSS Animations</h1>
+        
+        <div class="demo-grid">
+            <div class="demo-box">
+                <h3>Fade</h3>
+                <div class="fade"></div>
+                <p>Opacity change</p>
+            </div>
+            
+            <div class="demo-box">
+                <h3>Slide</h3>
+                <div class="slide"></div>
+                <p>Horizontal movement</p>
+            </div>
+            
+            <div class="demo-box">
+                <h3>Rotate</h3>
+                <div class="rotate"></div>
+                <p>Rotation effect</p>
+            </div>
+            
+            <div class="demo-box">
+                <h3>Scale</h3>
+                <div class="scale"></div>
+                <p>Size change</p>
+            </div>
+            
+            <div class="demo-box">
+                <h3>Bounce</h3>
+                <div class="bounce"></div>
+                <p>Vertical jump</p>
+            </div>
+            
+            <div class="demo-box">
+                <h3>Hover</h3>
+                <div class="hover-box"></div>
+                <p>Hover to animate</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

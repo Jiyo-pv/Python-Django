@@ -1,0 +1,89 @@
+<!-- Program 5: Landing Page -->
+<!-- @JIYO P V ROLL NO:33 Date: 14-02-2026 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        nav { background: white; padding: 1rem 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #667eea; }
+        nav ul { list-style: none; display: flex; gap: 2rem; }
+        nav a { text-decoration: none; color: #333; transition: 0.3s; }
+        nav a:hover { color: #667eea; }
+        
+        .hero { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 4rem 2rem; text-align: center; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; margin-bottom: 2rem; }
+        .hero button { background: white; color: #667eea; padding: 1rem 2rem; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        
+        .features { max-width: 1000px; margin: 4rem auto; padding: 2rem; }
+        .features h2 { text-align: center; margin-bottom: 3rem; color: #333; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .feature-card { background: #f5f5f5; padding: 2rem; border-radius: 8px; text-align: center; }
+        .feature-card h3 { color: #667eea; margin-bottom: 1rem; }
+        
+        .cta { background: #667eea; color: white; padding: 3rem 2rem; text-align: center; }
+        .cta h2 { margin-bottom: 1rem; }
+        .cta button { background: white; color: #667eea; padding: 1rem 2rem; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        
+        footer { background: #333; color: white; text-align: center; padding: 2rem; }
+        @media (max-width: 768px) { nav ul { flex-direction: column; gap: 1rem; } .hero h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">TechStart</div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <h1>Welcome to Our Service</h1>
+        <p>Build amazing products with our platform</p>
+        <button>Get Started Free</button>
+    </section>
+    
+    <section class="features">
+        <h2>Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>🚀 Fast</h3>
+                <p>Lightning-fast performance</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔒 Secure</h3>
+                <p>Enterprise-grade security</p>
+            </div>
+            <div class="feature-card">
+                <h3>💰 Affordable</h3>
+                <p>Great pricing plans</p>
+            </div>
+            <div class="feature-card">
+                <h3>📱 Responsive</h3>
+                <p>Works on all devices</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta">
+        <h2>Ready to Get Started?</h2>
+        <p>Join thousands of users today</p>
+        <button>Sign Up Now</button>
+    </section>
+    
+    <footer>
+        <p>&copy; 2026 TechStart. All rights reserved.</p>
+    </footer>
+</body>
+</html>

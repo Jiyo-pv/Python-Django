@@ -1,0 +1,152 @@
+<!-- Program 6: Form Validation -->
+<!-- @JIYO P V ROLL NO:33 Date: 14-02-2026 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #667eea, #764ba2); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+        .container { background: white; padding: 2rem; border-radius: 8px; max-width: 500px; width: 100%; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        h1 { color: #333; margin-bottom: 2rem; text-align: center; }
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; color: #333; font-weight: bold; }
+        input, textarea, select { width: 100%; padding: 0.75rem; border: 2px solid #ddd; border-radius: 5px; font-family: inherit; transition: border-color 0.3s; }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: #667eea; }
+        .error { border-color: #dc3545; background: #ffe6e6; }
+        .valid { border-color: #28a745; background: #e6ffe6; }
+        .error-text { color: #dc3545; font-size: 0.85rem; margin-top: 0.3rem; display: none; }
+        .error-text.show { display: block; }
+        .password-strength { height: 5px; background: #ddd; border-radius: 3px; margin-top: 0.5rem; }
+        .strength-bar { height: 100%; width: 0%; transition: all 0.3s; }
+        button { width: 100%; padding: 0.8rem; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        button:hover { background: #764ba2; }
+        .success { background: #d4edda; border: 1px solid #28a745; color: #155724; padding: 1rem; border-radius: 5px; display: none; margin-bottom: 1rem; }
+        .success.show { display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Registration Form</h1>
+        
+        <div class="success" id="successMsg">✓ Form submitted successfully!</div>
+        
+        <form id="myForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Your name" required>
+                <div class="error-text">Name must be at least 3 characters</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="your@email.com" required>
+                <div class="error-text">Enter a valid email</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" placeholder="10-digit number" required>
+                <div class="error-text">Enter 10 digits</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Min 6 characters" required>
+                <div class="password-strength">
+                    <div class="strength-bar" id="strengthBar"></div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="country">Country</label>
+                <select id="country" required>
+                    <option value="">Select country</option>
+                    <option value="usa">USA</option>
+                    <option value="india">India</option>
+                    <option value="uk">UK</option>
+                </select>
+            </div>
+            
+            <button type="submit">Register</button>
+            <button type="reset" style="background: #ccc; color: #333; margin-top: 0.5rem;">Clear</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('myForm');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const phoneInput = document.getElementById('phone');
+        const passwordInput = document.getElementById('password');
+        const successMsg = document.getElementById('successMsg');
+
+        // Validate name
+        nameInput.addEventListener('blur', function() {
+            if (this.value.length < 3) {
+                this.classList.add('error');
+                this.nextElementSibling.classList.add('show');
+            } else {
+                this.classList.remove('error');
+                this.classList.add('valid');
+                this.nextElementSibling.classList.remove('show');
+            }
+        });
+
+        // Validate email
+        emailInput.addEventListener('blur', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(this.value)) {
+                this.classList.add('error');
+                this.nextElementSibling.classList.add('show');
+            } else {
+                this.classList.remove('error');
+                this.classList.add('valid');
+                this.nextElementSibling.classList.remove('show');
+            }
+        });
+
+        // Validate phone
+        phoneInput.addEventListener('blur', function() {
+            const phoneRegex = /^\d{10}$/;
+            if (!phoneRegex.test(this.value.replace(/\D/g, ''))) {
+                this.classList.add('error');
+                this.nextElementSibling.classList.add('show');
+            } else {
+                this.classList.remove('error');
+                this.classList.add('valid');
+                this.nextElementSibling.classList.remove('show');
+            }
+        });
+
+        // Password strength indicator
+        passwordInput.addEventListener('input', function() {
+            const strength = this.value.length;
+            const bar = document.getElementById('strengthBar');
+            if (strength < 6) {
+                bar.style.width = '33%';
+                bar.style.background = '#dc3545';
+            } else if (strength < 10) {
+                bar.style.width = '66%';
+                bar.style.background = '#ffc107';
+            } else {
+                bar.style.width = '100%';
+                bar.style.background = '#28a745';
+            }
+        });
+
+        // Form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (nameInput.value.length >= 3 && emailInput.value && phoneInput.value) {
+                successMsg.classList.add('show');
+                form.reset();
+                document.querySelectorAll('input, select').forEach(el => el.classList.remove('error', 'valid'));
+                setTimeout(() => successMsg.classList.remove('show'), 2000);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+    <!-- Program 7: Search & Filter -->
+    <!-- @JIYO P V ROLL NO:33 Date: 14-02-2026 -->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Search & Filter</title>
+        <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 2rem; }
+            .container { max-width: 1000px; margin: 0 auto; }
+            h1 { text-align: center; margin-bottom: 2rem; color: #333; }
+            .search-box { background: white; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+            .search-box input { width: 100%; padding: 0.75rem; border: 2px solid #ddd; border-radius: 5px; font-size: 1rem; }
+            .filter-buttons { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; }
+            .filter-btn { padding: 0.5rem 1rem; background: #f0f0f0; border: 2px solid #ddd; border-radius: 5px; cursor: pointer; transition: all 0.3s; font-weight: bold; }
+            .filter-btn.active { background: #667eea; color: white; border-color: #667eea; }
+            .filter-btn:hover { border-color: #667eea; }
+            .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
+            .item { background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center; transition: 0.3s; display: none; }
+            .item.show { display: block; }
+            .item:hover { transform: translateY(-5px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+            .item h3 { color: #667eea; margin-bottom: 0.5rem; }
+            .item p { color: #666; font-size: 0.9rem; }
+            .no-results { grid-column: 1 / -1; text-align: center; color: #666; padding: 2rem; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Search & Filter Products</h1>
+            
+            <div class="search-box">
+                <div>
+                    <input type="text" id="searchInput" placeholder="Search products...">
+                </div>
+                <div style="margin-top: 1rem;">
+                    <strong>Filter by Category:</strong>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" onclick="filterByCategory('All', event)">All</button>
+                        <button class="filter-btn" onclick="filterByCategory('electronics', event)">Electronics</button>
+                        <button class="filter-btn" onclick="filterByCategory('accessories', event)">Accessories</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="items-grid" id="itemsGrid"></div>
+        </div>
+
+        <script>
+            const products = [
+                { id: 1, name: 'Laptop', category: 'electronics', price: '$999' },
+                { id: 2, name: 'Phone', category: 'electronics', price: '$699' },
+                { id: 3, name: 'Headphones', category: 'electronics', price: '$199' },
+                { id: 4, name: 'Watch', category: 'accessories', price: '$299' },
+                { id: 5, name: 'Charger', category: 'accessories', price: '$49' },
+                { id: 6, name: 'Power Bank', category: 'accessories', price: '$79' },
+                { id: 7, name: 'Keyboard', category: 'electronics', price: '$149' },
+                { id: 8, name: 'Mouse', category: 'electronics', price: '$49' }
+            ];
+
+            const grid = document.getElementById('itemsGrid');
+            const searchInput = document.getElementById('searchInput');
+
+            // Display all products
+            function displayProducts(filtered) {
+                grid.innerHTML = '';
+                if (filtered.length === 0) {
+                    grid.innerHTML = '<div class="no-results">No products found</div>';
+                    return;
+                }
+                filtered.forEach(product => {
+                    const item = document.createElement('div');
+                    item.className = 'item show';
+                    item.innerHTML = `
+                        <h3>${product.name}</h3>
+                        <p>${product.category}</p>
+                        <p><strong>${product.price}</strong></p>
+                    `;
+                    grid.appendChild(item);
+                });
+            }
+
+            // Search and filter products
+            let selectedCategory = 'All';
+
+            function filterByCategory(category, evt) {
+                selectedCategory = category;
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                evt.target.classList.add('active');
+                applyFilters();
+            }
+
+            function applyFilters() {
+                const query = searchInput.value.toLowerCase();
+                const filtered = products.filter(p => {
+                    const matchCategory = selectedCategory === 'All' || p.category === selectedCategory;
+                    const matchSearch = p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query);
+                    return matchCategory && matchSearch;
+                });
+                displayProducts(filtered);
+            }
+
+            searchInput.addEventListener('keyup', applyFilters);
+
+            // Show all products on load
+            displayProducts(products);
+        </script>
+    </body>
+    </html>

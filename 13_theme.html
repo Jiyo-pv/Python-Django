@@ -1,0 +1,48 @@
+<!-- Program 13: Theme Switcher -->
+<!-- @JIYO P V ROLL NO:33 Date: 14-02-2026 -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Theme Changer</title>
+    <style>
+        body {
+            font-family: Arial;
+            transition: 0.3s;
+        }
+
+        .dark {
+            background: black;
+            color: white;
+        }
+
+        .blue {
+            background: #0d6efd;
+            color: white;
+        }
+
+        button {
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Dynamic Theme Changer</h2>
+    <p>Click buttons to change the webpage theme dynamically.</p>
+
+    <button onclick="setTheme('dark')">Dark Theme</button>
+    <button onclick="setTheme('blue')">Blue Theme</button>
+    <button onclick="setTheme('')">Default</button>
+
+    <script>
+        function setTheme(theme) {
+            document.body.className = theme;
+        }
+    </script>
+
+</body>
+
+</html>

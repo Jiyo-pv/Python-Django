@@ -1,0 +1,77 @@
+<!-- Program 3: Flexbox Layout -->
+<!-- @JIYO P V ROLL NO:33 Date: 14-02-2026 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Layout</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 2rem; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        h1 { text-align: center; margin-bottom: 3rem; color: #333; }
+        .section { background: white; padding: 2rem; margin-bottom: 2rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .section h2 { color: #667eea; margin-bottom: 1rem; }
+        
+        .flex-row { display: flex; gap: 1rem; justify-content: space-between; }
+        .flex-col { display: flex; flex-direction: column; gap: 1rem; }
+        .flex-wrap { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .flex-center { display: flex; gap: 1rem; justify-content: center; align-items: center; }
+        
+        .item { background: #667eea; color: white; padding: 2rem; border-radius: 8px; text-align: center; flex: 1; }
+        .item-large { flex: 2; }
+        
+        @media (max-width: 768px) { .flex-row, .flex-wrap { flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Flexbox Layout Examples</h1>
+        
+        <div class="section">
+            <h2>Row Layout (Side by Side)</h2>
+            <div class="flex-row">
+                <div class="item">Item 1</div>
+                <div class="item">Item 2</div>
+                <div class="item">Item 3</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Column Layout (Stacked)</h2>
+            <div class="flex-col">
+                <div class="item">Item 1</div>
+                <div class="item">Item 2</div>
+                <div class="item">Item 3</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Mixed Flex Sizes</h2>
+            <div class="flex-row">
+                <div class="item item-large">Large (2x)</div>
+                <div class="item">Small</div>
+                <div class="item">Small</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Flex With Wrap</h2>
+            <div class="flex-wrap">
+                <div class="item" style="flex: 0 1 45%;">Box 1</div>
+                <div class="item" style="flex: 0 1 45%;">Box 2</div>
+                <div class="item" style="flex: 0 1 45%;">Box 3</div>
+                <div class="item" style="flex: 0 1 45%;">Box 4</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Center Alignment</h2>
+            <div class="flex-center" style="background: #f9f9f9; padding: 2rem; border-radius: 8px;">
+                <div class="item" style="width: 100px; height: 100px;">Center</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

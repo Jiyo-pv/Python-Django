@@ -1,0 +1,78 @@
+<!-- Program 8: Image Slideshow -->
+<!-- @JIYO P V ROLL NO:33 Date: 14-02-2026 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slideshow</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #1a1a1a; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 2rem; }
+        .container { max-width: 600px; width: 100%; }
+        h1 { color: white; text-align: center; margin-bottom: 2rem; }
+        .slideshow { position: relative; background: black; border-radius: 8px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+        .slide { display: none; width: 100%; height: 400px; object-fit: cover; }
+        .slide.active { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .controls { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; }
+        button { padding: 0.75rem 1.5rem; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        button:hover { background: #764ba2; }
+        .counter { color: white; text-align: center; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Slideshow</h1>
+        
+        <div class="slideshow" id="slideshow">
+            <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600&h=400&fit=crop" alt="Slide 1" class="slide active">
+            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=400&fit=crop" alt="Slide 2" class="slide">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f70504504?w=600&h=400&fit=crop" alt="Slide 3" class="slide">
+            <img src="https://images.unsplash.com/photo-1550745165-9bc82d00ba15?w=600&h=400&fit=crop" alt="Slide 4" class="slide">
+        </div>
+        
+        <div class="controls">
+            <button onclick="previousSlide()">← Previous</button>
+            <button onclick="nextSlide()">Next →</button>
+            <button onclick="playSlideshow()">Auto Play</button>
+        </div>
+        
+        <div class="counter">
+            <p>Slide <span id="current">1</span> of <span id="total">4</span></p>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let autoPlayInterval;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n].classList.add('active');
+            document.getElementById('current').textContent = n + 1;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function playSlideshow() {
+            autoPlayInterval = setInterval(nextSlide, 3000);
+        }
+
+        function stopSlideshow() {
+            clearInterval(autoPlayInterval);
+        }
+
+        document.getElementById('total').textContent = slides.length;
+    </script>
+</body>
+</html>
