@@ -1,0 +1,50 @@
+<!-- Program 18: Flask Calculator using AJAX -->
+<!-- @JIYO P V ROLL NO:33 Date: 01-03-2026 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Calculator</title>
+</head>
+<body>
+
+<h2>Simple Calculator</h2>
+
+<input type="number" id="num1" placeholder="Enter first number">
+<input type="number" id="num2" placeholder="Enter second number">
+
+<select id="operation">
+    <option value="add">Addition</option>
+    <option value="sub">Subtraction</option>
+    <option value="mul">Multiplication</option>
+    <option value="div">Division</option>
+</select>
+
+<button onclick="calculate()">Calculate</button>
+
+<h3>Result: <span id="result"></span></h3>
+
+<script>
+function calculate() {
+    let num1 = document.getElementById("num1").value;
+    let num2 = document.getElementById("num2").value;
+    let operation = document.getElementById("operation").value;
+
+    let formData = new FormData();
+    formData.append("num1", num1);
+    formData.append("num2", num2);
+    formData.append("operation", operation);
+
+    fetch('/calculate', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("result").innerText = data.result;
+    });
+}
+</script>
+
+</body>
+</html>

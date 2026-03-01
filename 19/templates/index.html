@@ -1,0 +1,42 @@
+<!-- Program 19: Suggestion Form using AJAX -->
+<!-- @JIYO P V ROLL NO:33 Date: 01-03-2026 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Suggestion Form</title>
+</head>
+<body>
+
+<h2>Suggestion Form</h2>
+
+<input type="text" id="name" placeholder="Enter your name"><br><br>
+
+<textarea id="message" placeholder="Enter your suggestion"></textarea><br><br>
+
+<button onclick="submitForm()">Submit</button>
+
+<h3 id="response"></h3>
+
+<script>
+function submitForm() {
+    let name = document.getElementById("name").value;
+    let message = document.getElementById("message").value;
+
+    let formData = new FormData();
+    formData.append("name", name);
+    formData.append("message", message);
+
+    fetch('/submit', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("response").innerText = data.response;
+    });
+}
+</script>
+
+</body>
+</html>
